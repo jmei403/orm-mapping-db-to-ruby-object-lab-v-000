@@ -68,6 +68,7 @@ class Student
     SQL
 
     DB[:conn].execute(sql).map { |row| self.new_from_db(row) }
+    @id = DB[:conn].execute("SELECT last_insert_rowid() FROM songs")[0][0]
   end
 
   def save
